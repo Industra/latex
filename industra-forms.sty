@@ -1,0 +1,73 @@
+\ProvidesPackage{industra-forms}
+
+\usepackage{industra}
+
+% disable section numbering
+\setcounter{secnumdepth}{0}
+
+% disable page numbering
+\pagenumbering{gobble}
+
+% attendance form front page
+\newcommand{\industraFormsGenerateFront}[2]{
+	
+	\begin{titlepage}
+		
+		\begin{center}
+			\vspace*{5cm}{\scshape\Huge \textbf{Industra Labs Training Attendance} \par}
+			\vspace{3cm}
+			\includegraphics[width=0.25\textwidth]{imgs/logo.png}\par\vspace{1cm}
+		\end{center}
+		
+		\LARGE\vspace{1.5cm}
+		\noindent \textbf{Machine/Tool:} #1
+		\newline\noindent\vspace{0cm}\textbf{Machine/Tool ID:} #2
+		
+		
+		% omit date
+		\date{}
+		\bigskip\bigskip
+		
+	\end{titlepage}
+}
+
+% attendance forms generator
+\newcounter{numberOfPages}
+\newcommand{\industraFormsGenerateAttendance}[2]{
+	
+	\setcounter{numberOfPages}{0}
+	\whiledo{\thenumberOfPages<#2}{
+	
+		\begingroup	
+		\begin{figure}[t]
+			\center{\section{Industra Labs Training Attendance --- #1}}
+		\end{figure}
+		\begin{table}
+			
+			\def\tand{&}
+			%\newcounter{ita}[section]
+			\centering
+			\begin{tabular}{|p{4.5cm}|p{1.5cm}|p{7cm}|p{4cm}|}
+				
+				\hline
+				 Name & User ID & E-mail & Signature \\ \hline
+				&      &           &           \\[4ex] \hline
+				
+				\setcounter{ita}{1}%
+				\whiledo{\theita<24}{%
+					\tand \tand  \tand \\[4ex] \hline
+					\stepcounter{ita}%
+				}%
+				
+				&      &           &           \\[4ex]\hline
+				
+				
+				
+			\end{tabular}
+			
+		\end{table}
+		\clearpage
+		\endgroup
+		\stepcounter{numberOfPages}
+	}
+}
