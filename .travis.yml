@@ -1,0 +1,6 @@
+dist: xenial
+before_install:
+- "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-bibtex-extra texlive-bibtex-extra texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng texlive-publishers && sudo texhash"
+script:
+- mkdir .build
+- pdflatex ./test.tex
